@@ -6,5 +6,6 @@ bcm2835/.git
 *.tar.gz
 /*/**
 !/*/PKGBUILD
+!/*/.SRCINFO
 !/*/*.patch
 !/*/*.install
