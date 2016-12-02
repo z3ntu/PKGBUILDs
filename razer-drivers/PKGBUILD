@@ -11,9 +11,8 @@ url="https://github.com/terrycain/razer_drivers"
 license=('GPL2')
 makedepends=('make')
 optdepends=('razercommander-git: gtk frontend for razer-drivers')
-#source=("$pkgbase::git+https://github.com/terrycain/razer_drivers.git")
 source=("$pkgbase-v$pkgver.tar.gz::https://github.com/terrycain/razer-drivers/archive/v1.0.17.tar.gz")
-sha512sums=('acb042e7f6b9947a3b245edf267a7d71695f41d496c76addae2c1e612cfc0f40db7fe080d508370bb4334edc60fa2d378e5501f280416def1617847e49d802e2')
+sha512sums=('0b598d30d1f0191d18c643833f00cd4c26291b99dd10663275492e03068489df409b2ae26b195e57f08d3ec5d8c4e4e4233f616edc5ba0240bc3b0f76a48c340')
 _pythondir=$(python3 -c 'import sys; print(sys.path[-1])')
 
 package_python-razer() {
