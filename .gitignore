@@ -10,6 +10,7 @@ bcm2835/.git
 !/*/*.patch
 !/*/*.diff
 !/*/*.install
+!/*/*.hook
 !/*/*.desktop
 !/linux-steam-integration*/move-steam-lsi.sh
 !/natron/config.pri
