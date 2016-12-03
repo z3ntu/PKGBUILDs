@@ -3,7 +3,7 @@
 
 pkgbase=razer-drivers-git
 pkgname=('python-razer-git' 'razer-daemon-git' 'razer-driver-dkms-git')
-pkgver=1.0.17.r37.gd31ff43
+pkgver=1.0.17.r24.ga4e2da0
 pkgrel=1
 pkgdesc="An entirely open source driver and user-space daemon that allows you to manage your Razer peripherals on GNU/Linux."
 arch=('any')
@@ -11,7 +11,7 @@ url="https://github.com/terrycain/razer_drivers"
 license=('GPL2')
 makedepends=('git' 'make' 'python')
 optdepends=('razercommander-git: gtk frontend for razer-drivers')
-source=("$pkgbase::git+https://github.com/terrycain/razer_drivers.git#branch=feature_DeathAdder0x0043")
+source=("$pkgbase::git+https://github.com/terrycain/razer_drivers.git")
 md5sums=('SKIP')
 
 pkgver() {

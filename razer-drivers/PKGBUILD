@@ -3,7 +3,7 @@
 
 pkgbase=razer-drivers
 pkgname=('python-razer' 'razer-daemon' 'razer-driver-dkms')
-pkgver=1.0.17
+pkgver=1.1.0
 pkgrel=1
 pkgdesc="An entirely open source driver and user-space daemon that allows you to manage your Razer peripherals on GNU/Linux."
 arch=('any')
@@ -11,8 +11,8 @@ url="https://github.com/terrycain/razer_drivers"
 license=('GPL2')
 makedepends=('make')
 optdepends=('razercommander-git: gtk frontend for razer-drivers')
-source=("$pkgbase-v$pkgver.tar.gz::https://github.com/terrycain/razer-drivers/archive/v1.0.17.tar.gz")
-sha512sums=('0b598d30d1f0191d18c643833f00cd4c26291b99dd10663275492e03068489df409b2ae26b195e57f08d3ec5d8c4e4e4233f616edc5ba0240bc3b0f76a48c340')
+source=("$pkgbase-v$pkgver.tar.gz::https://github.com/terrycain/razer-drivers/archive/v$pkgver.tar.gz")
+sha512sums=('83ab79eca0cc58bcfcbcc957a60ed7ad0ea2b89c593c3911f3a4762a23a128a03525ee84eba9857d26098b908ad95ccd9e7ddf4d2380a385343e705c81579d09')
 _pythondir=$(python3 -c 'import sys; print(sys.path[-1])')
 
 package_python-razer() {

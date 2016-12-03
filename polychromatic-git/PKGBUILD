@@ -2,7 +2,7 @@
 
 pkgname=polychromatic-git
 pkgrel=1
-pkgver=0.3.4.r4.g00440b0
+pkgver=0.3.3.r9.gbcb3658
 pkgdesc='A graphical front end for managing Razer peripherals under GNU/Linux.'
 arch=('any')
 license=('GPL2')

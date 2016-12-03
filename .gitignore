@@ -1,10 +1,7 @@
-bcm2835/.git
-*/src/
-*/pkg/
-*.pkg.tar.xz
-*.tar.bz2
-*.tar.gz
+# Ignore everything
 /*/**
+
+# Exclude these files from ignoring
 !/*/PKGBUILD
 !/*/.SRCINFO
 !/*/*.patch
@@ -12,6 +9,8 @@ bcm2835/.git
 !/*/*.install
 !/*/*.hook
 !/*/*.desktop
+
+# Special cases/files
 !/linux-steam-integration*/move-steam-lsi.sh
 !/natron/config.pri
 !/spriter-bin/spriter.sh

@@ -3,7 +3,7 @@
 
 _pkgname=repo
 pkgname=$_pkgname-git
-pkgver=1.12.37.r13.gb881d22
+pkgver=1.12.26.r7.g5d0c3a6
 pkgrel=1
 pkgdesc="Tool built on top of git to help manage many git repositories. Part of the Android project."
 arch=("any")
