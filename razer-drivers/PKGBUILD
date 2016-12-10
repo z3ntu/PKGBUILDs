@@ -3,19 +3,19 @@
 
 pkgbase=razer-drivers
 pkgname=('python-razer' 'razer-daemon' 'razer-driver-dkms')
-pkgver=1.1.0
+pkgver=1.1.2
 pkgrel=1
 pkgdesc="An entirely open source driver and user-space daemon that allows you to manage your Razer peripherals on GNU/Linux."
 arch=('any')
 url="https://github.com/terrycain/razer_drivers"
 license=('GPL2')
-makedepends=('make')
+makedepends=('make' 'python')
 optdepends=('razercommander-git: gtk frontend for razer-drivers')
 source=("$pkgbase-v$pkgver.tar.gz::https://github.com/terrycain/razer-drivers/archive/v$pkgver.tar.gz")
-sha512sums=('83ab79eca0cc58bcfcbcc957a60ed7ad0ea2b89c593c3911f3a4762a23a128a03525ee84eba9857d26098b908ad95ccd9e7ddf4d2380a385343e705c81579d09')
-_pythondir=$(python3 -c 'import sys; print(sys.path[-1])')
+sha512sums=('9d9cfe3ac26662cc9a1618cb3cdc492d9629d48b6c6fd3de8bb1d5f802543116c498aee9370e703dabb7cacd15a18912ac151b9ef9cb280d1256a41903737ff7')
 
 package_python-razer() {
+  _pythondir=$(python3 -c 'import sys; print(sys.path[-1])')
   _srcpkgdir="$srcdir/$pkgbase-$pkgver"
   pkgdesc="A python library for controlling razer-daemon"
   depends=('razer-daemon' 'python' 'python-dbus' 'python-numpy')
@@ -27,6 +27,7 @@ package_python-razer() {
 }
 
 package_razer-daemon() {
+  _pythondir=$(python3 -c 'import sys; print(sys.path[-1])')
   _srcpkgdir="$srcdir/$pkgbase-$pkgver"
   pkgdesc="A daemon for controlling razer-driver"
   depends=('razer-driver-dkms' 'python-dbus' 'python-gobject' 'python-setproctitle' 'xautomation' 'xdotool' 'libdbus' 'python-notify2')

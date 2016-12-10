@@ -3,7 +3,7 @@
 
 pkgbase=razer-drivers-git
 pkgname=('python-razer-git' 'razer-daemon-git' 'razer-driver-dkms-git')
-pkgver=1.0.17.r24.ga4e2da0
+pkgver=1.1.2.r3.gdb45a63
 pkgrel=1
 pkgdesc="An entirely open source driver and user-space daemon that allows you to manage your Razer peripherals on GNU/Linux."
 arch=('any')
