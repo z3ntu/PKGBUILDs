@@ -2,48 +2,43 @@
 
 pkgname=ubuntu-sdk-tools-bzr
 _pkgname=ubuntu-sdk-tools
-pkgver=r27
+pkgver=r33
 pkgrel=1
-pkgdesc=""
-url=""
-arch=('x86_64' 'i686')
+pkgdesc="Tools required by the Ubuntu SDK IDE"
+url="https://launchpad.net/ubuntu-sdk-tools"
+arch=("x86_64" "i686")
 license=('LGPL2.1')
 depends=()
 makedepends=('go' 'bzr')
-# options='!emptydirs'
-provides=("ubuntu-sdk-tools")
-conflicts=("ubuntu-sdk-tools")
-source=("bzr+lp:ubuntu-sdk-tools")
-md5sums=('SKIP')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 
 pkgver() {
-  cd $srcdir/$_pkgname
+  cd $srcdir/build/src/launchpad.net/ubuntu-sdk-tools
   printf "r%s" "$(bzr revno)"
+}
+
+prepare() {
+  export GOPATH="$srcdir/build"
+
+  go get -v launchpad.net/ubuntu-sdk-tools
 }
 
 build() {
   export GOPATH="$srcdir/build"
 
-  cd $srcdir/$_pkgname
-
-  #download deps
-  echo "go get: downloading dependencies..."
-  go get -v -d
-
-  echo "go build: building executable..."
+  go get -v launchpad.net/ubuntu-sdk-tools
+  cd $GOPATH/src/launchpad.net/ubuntu-sdk-tools
+  go install -v # I don't think this does anything useful but it's here anyways.
   cd usdk-target/
-  go get -v -d
-  go build  # build is currently broken...
+  go install -v
   cd ../usdk-wrapper/
-  go get -v -d
-  go build
+  go install -v
 }
 
 package() {
-  cd $srcdir/$_pkgname
-  mkdir -p $pkgdir/usr/bin
-#  cp usdk-target/usdk-target $pkgdir/usr/bin
-  cp usdk-wrapper/usdk-wrapper $pkgdir/usr/bin
+  install -Dm755 $srcdir/build/bin/usdk-target $pkgdir/usr/bin/usdk-target
+  install -Dm755 $srcdir/build/bin/usdk-wrapper $pkgdir/usr/bin/usdk-wrapper
 }
 
 # vim:set ts=2 sw=2 et:

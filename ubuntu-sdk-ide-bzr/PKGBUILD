@@ -2,18 +2,18 @@
 
 pkgname=ubuntu-sdk-ide-bzr
 _pkgname=ubuntu-sdk-ide
-pkgver=r143
+pkgver=r170
 pkgrel=1
 pkgdesc="Integrated development environment for Ubuntu"
 url="https://launchpad.net/ubuntu-sdk-ide"
 arch=('x86_64' 'i686')
 license=('LGPL3')
 makedepends=('go' 'bzr' 'git' 'cmake' 'postgresql-libs' 'libmariadbclient' 'freetds' 'lttng-ust' 'libnih' 'extra-cmake-modules' 'fcitx' 'doxygen' 'botan-1.10' 'chrpath'
-'mtdev' 'libfbclient' 'libmariadbclient' 'sqlite' 'unixodbc' 'postgresql-libs' 'alsa-lib' 'gst-plugins-base-libs')
+'mtdev' 'libfbclient' 'libmariadbclient' 'sqlite' 'unixodbc' 'postgresql-libs' 'alsa-lib' 'gst-plugins-base-libs' 'quilt')
 depends=("lxd" "ubuntu-sdk-tools")
 # options='!emptydirs'
-provides=("ubuntu-sdk-ide" "qtcreator" "qtchooser")
-conflicts=("ubuntu-sdk-ide" "qtcreator" "qtchooser")
+provides=("ubuntu-sdk-ide" "qtcreator")
+conflicts=("ubuntu-sdk-ide" "qtcreator")
 source=("bzr+lp:ubuntu-sdk-ide"
         "0001.patch")
 md5sums=('SKIP'
@@ -26,9 +26,10 @@ pkgver() {
 
 prepare() {
   cd $srcdir/$_pkgname
-  if ! patch -R -p0 --dry-run <../0001.patch; then
-    patch -Np0 < ../0001.patch
-  fi
+#  if ! patch -R -p0 --dry-run <../0001.patch; then
+#    patch -Np0 < ../0001.patch
+#  fi
+
 #  shebang_patch=(
 #    dist/qtcreator/scripts/deployqt.py
 #  )
@@ -42,7 +43,7 @@ prepare() {
 build() {
   mkdir -p $srcdir/$_pkgname/build
   cd $srcdir/$_pkgname/build
-  cmake -DCMAKE_INSTALL_PREFIX='/usr' ..
+  cmake -DCMAKE_INSTALL_PREFIX=/usr ..
   make
 }
 
@@ -50,7 +51,9 @@ package() {
   cd $srcdir/$_pkgname
 #  make DESTDIR="$pkgdir/" install
 #  cmake -p cmake_install.cmake
-  cp -R build/ubuntu-sdk-ide $pkgdir/usr
+  #cp -R build/ubuntu-sdk-ide $pkgdir/usr
+  cd $srcdir/$_pkgname/build
+  make install
 }
 
 # vim:set ts=2 sw=2 et:
