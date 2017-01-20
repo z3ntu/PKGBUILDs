@@ -2,8 +2,8 @@
 
 pkgbase=razer-drivers-git
 pkgname=('python-razer-git' 'razer-daemon-git' 'razer-driver-dkms-git' 'razer-driver-arch-git')
-pkgver=1.1.5.r10.g8ae9799
-pkgrel=2
+pkgver=1.1.5.r23.g4db31ba
+pkgrel=1
 pkgdesc="An entirely open source driver and user-space daemon that allows you to manage your Razer peripherals on GNU/Linux."
 arch=('any')
 url="https://github.com/terrycain/razer-drivers"
@@ -52,7 +52,7 @@ package_razer-driver-dkms-git() {
   make DESTDIR=$pkgdir setup_dkms udev_install
 }
 
-# remember to also adjust the .install files and the package deps below
+# remember to also adjust the .install files and the package deps below (and makedeps above)
 _extramodules=extramodules-4.8-ARCH
 
 build() {
