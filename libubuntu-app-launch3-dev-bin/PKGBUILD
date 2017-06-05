@@ -1,0 +1,28 @@
+# Maintainer: Luca Weiss <luca (at) z3ntu (dot) xyz>
+
+_srcname=ubuntu-app-launch
+_pkgname=libubuntu-app-launch3-dev
+pkgname=$_pkgname-bin
+pkgver=0.12
+_pkgver=0.12+17.04.20170404.2-0ubuntu1
+pkgrel=1
+pkgdesc=""
+arch=('i686' 'x86_64')
+url=""
+license=('GPL3')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+source_i686=("http://mirrors.kernel.org/ubuntu/pool/main/${_srcname:0:1}/${_srcname}/${_pkgname}_${_pkgver}_i386.deb")
+source_x86_64=("http://mirrors.kernel.org/ubuntu/pool/main/${_srcname:0:1}/${_srcname}/${_pkgname}_${_pkgver}_amd64.deb")
+md5sums_i686=('e020003eea1cc4e3a326e8fdff05ef63')
+md5sums_x86_64=('5e7b5c91bc7ef870f8a762ce15d7d43e')
+
+package() {
+  bsdtar xf data.tar.xz
+  chmod -R g-w usr
+  mv usr "${pkgdir}"
+  mv $pkgdir/usr/lib/x86_64-linux-gnu/* $pkgdir/usr/lib/
+  rmdir $pkgdir/usr/lib/x86_64-linux-gnu/
+}
+
+# vim:set ts=2 sw=2 et:

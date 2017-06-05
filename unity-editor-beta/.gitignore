@@ -1,0 +1,10 @@
+*
+!.gitignore
+!PKGBUILD
+!*.install
+!unity-editor-beta
+!monodevelop-unity-beta
+!EULA
+!update-eula
+!.SRCINFO
+!unity-monodevelop-beta.png
