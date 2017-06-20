@@ -2,7 +2,7 @@
 
 _pkgname=ion
 pkgname=$_pkgname-git
-pkgver=r556.ae73d27
+pkgver=r569.47aa80f
 pkgrel=1
 pkgdesc="The Ion Shell. Compatible with Redox and Linux. (Git version)"
 arch=("x86_64" "i686")
