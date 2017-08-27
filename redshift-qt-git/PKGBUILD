@@ -2,7 +2,7 @@
 
 pkgname=redshift-qt-git
 _pkgname=redshift-qt
-pkgver=0.3.r1.g8fa2da6
+pkgver=0.3.r5.g4682281
 pkgrel=1
 pkgdesc="redshift-gtk rewrite with C++/Qt"
 arch=('x86_64' 'i686')
