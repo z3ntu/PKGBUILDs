@@ -1,0 +1,18 @@
+pkgbase = plasma5-applets-server-status-git
+	pkgdesc = Applet for KDE Plasma 5 showing a status of the servers defined by user.
+	pkgver = r3.e97eae0
+	pkgrel = 1
+	url = https://github.com/MakG10/plasma-applet-server-status
+	arch = any
+	license = unknown
+	makedepends = git
+	makedepends = cmake
+	makedepends = extra-cmake-modules
+	makedepends = plasma-framework
+	provides = plasma5-applets-server-status
+	conflicts = plasma5-applets-server-status
+	source = git+https://github.com/MakG10/plasma-applet-server-status.git
+	sha512sums = SKIP
+
+pkgname = plasma5-applets-server-status-git
+
