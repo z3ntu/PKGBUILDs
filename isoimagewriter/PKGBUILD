@@ -13,7 +13,7 @@ source=("https://download.kde.org/unstable/isoimagewriter/${pkgver}/isoimagewrit
 sha512sums=('cec7d67e8255caaaccc14d07da3677a13b8081f599136516b0a31262e20eec884fa738dcc2d3aa1bfd49c00bb6c5bc6c3a62c767b13cdb06799cb53cf1e6ecc1'
             'SKIP')
 validpgpkeys=('2D1D5B0588357787DE9EE225EC94D18F7F05997E') # Jonathan Riddell
-options=(!strip)
+options=(!buildflags)
 
 prepare() {
   mkdir -p build
@@ -21,11 +21,7 @@ prepare() {
 
 build() {
   cd build
-  cmake ../$pkgname-$pkgver -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Debug -DKDE_INSTALL_LIBDIR=lib
-  unset CPPFLAGS
-  unset CFLAGS
-  unset CXXFLAGS
-  unset LDFLAGS
+  cmake ../$pkgname-$pkgver -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LIBDIR=lib
   make
 }
 
