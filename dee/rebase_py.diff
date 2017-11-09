@@ -1,0 +1,24 @@
+--- /usr/share/gtk-doc/python/gtkdoc/rebase.py	2017-08-16 13:14:29.000000000 +0200
++++ rebase.py	2017-11-03 08:38:52.350493973 +0100
+@@ -134,7 +134,7 @@
+ def ReadDevhelp(dir, file):
+     onlinedir = None
+ 
+-    for line in open(os.path.join(dir, file)):
++    for line in open(os.path.join(dir, file), encoding='UTF-8'):
+         # online must come before chapter/functions
+         if '<chapters' in line or '<functions' in line:
+             break
+@@ -205,10 +205,10 @@
+     def repl_func(match):
+         return match.group(1) + RebaseLink(match.group(2), options) + match.group(3)
+ 
+-    contents = open(filename).read()
++    contents = open(filename, encoding='UTF-8').read()
+     processed = re.sub(regex, repl_func, contents)
+     newfilename = filename + '.new'
+-    open(newfilename, 'w').write(processed)
++    open(newfilename, 'w', encoding='UTF-8').write(processed)
+     os.unlink(filename)
+     os.rename(newfilename, filename)
+ 

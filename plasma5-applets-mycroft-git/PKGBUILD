@@ -2,7 +2,7 @@
 
 _pkgname=plasma-mycroft
 pkgname=plasma5-applets-mycroft-git
-pkgver=r24.07c0a03
+pkgver=r27.deb0226
 pkgrel=1
 pkgdesc="Mycroft Ai Plasmoid / Widget for KDE Plasma 5 Desktop"
 arch=("x86_64" "i686")
