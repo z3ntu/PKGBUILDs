@@ -1,0 +1,35 @@
+# Maintainer: Guillaume Horel <guillaume.horel@gmail.com>
+
+pkgname=linphone-desktop
+pkgver=4.1.1
+pkgrel=1
+pkgdesc="A Voice-over-IP phone"
+arch=('i686' 'x86_64')
+url="http://www.linphone.org"
+license=('GPL2')
+#depends=('bcg729' 'belcard-git' 'belle-sip-git' 'belr-git' 'bzrtp-git'
+#    'linphone-git' 'libpulse' 'libxv' 'mediastreamer-git' 'ortp-git' 
+#    'libsoup' 'libnotify' 'qt5-quickcontrols'
+#    'qt5-quickcontrols2' 'qt5-graphicaleffects')
+#makedepends=('cmake' 'pkg-config' 'python-pystache' 'perl-xml-parser' 'intltool')
+#optdepends=('pulseaudio')
+options=('!emptydirs')
+source=("https://linphone.org/releases/sources/linphoneqt/linphoneqt-$pkgver.tar.gz")
+sha512sums=('6e732a1bceaf36906f5fc6604d49e2b891b8515b11971712af480014206da731c564025e88197f639389c06b2aba5a7062c0792eb23908d1372a3f5a60596d47')
+
+prepare() {
+  rm -rf build
+  mkdir -p build
+}
+
+build() {
+  cd build
+  cmake ../$pkgname-$pkgver -DCMAKE_INSTALL_PREFIX=/usr \
+      -DCMAKE_INSTALL_LIBDIR=lib
+  make
+}
+
+package() {
+  cd build
+  make DESTDIR="$pkgdir" install
+}
