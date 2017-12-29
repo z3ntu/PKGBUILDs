@@ -24,7 +24,7 @@ prepare() {
 
 build() {
   cd build
-  cmake ../$pkgname-$pkgver -DCMAKE_INSTALL_PREFIX=/usr \
+  cmake ../linphoneqt-$pkgver -DCMAKE_INSTALL_PREFIX=/usr \
       -DCMAKE_INSTALL_LIBDIR=lib
   make
 }

@@ -1,0 +1,21 @@
+# Maintainer: Luca Weiss <luca (at) z3ntu (dot) xyz>
+
+_name=matrix-client
+pkgname=python-$_name
+pkgver=0.0.6
+pkgrel=1
+pkgdesc="Client-Server SDK for Matrix"
+arch=('any')
+url="https://pypi.python.org/pypi/$_name/"
+license=('Apache2')
+depends=('python')
+#options=(!emptydirs)
+source=("https://files.pythonhosted.org/packages/source/${_name::1}/${_name}/${_name}-${pkgver}.tar.gz")
+sha512sums=('a1e00c012e7c4812c9745d29b0fdfb1416ea8d050b178f07359eb8c97a66436533f9bb7524af6073ce4f21d59140ee487c3622f60c8ec60b99e061291c90c520')
+
+package() {
+  cd "$srcdir/matrix-python-sdk-$pkgver"
+  python setup.py install --root="$pkgdir/" --optimize=1
+}
+
+# vim:set ts=2 sw=2 et:

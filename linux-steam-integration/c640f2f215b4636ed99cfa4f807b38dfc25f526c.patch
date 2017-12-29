@@ -1,0 +1,73 @@
+From c640f2f215b4636ed99cfa4f807b38dfc25f526c Mon Sep 17 00:00:00 2001
+From: Ikey Doherty <ikey@solus-project.com>
+Date: Sat, 23 Dec 2017 19:52:37 +0000
+Subject: [PATCH] intercept: Allow disabling (build-time) the udev redirection
+
+Arch Linux uses a funky udev shim package which is incompatible with
+our udev workaround, so allow them to disable it and use their shim
+instead (as some packages are apparently **built** against the shim.)
+
+For all other distros which are binary-built in ABI lockstep with udev
+proper, keep it enabled.
+
+This fixes #46.
+
+Signed-off-by: Ikey Doherty <ikey@solus-project.com>
+---
+ meson.build          | 7 +++++++
+ meson_options.txt    | 2 ++
+ src/intercept/main.c | 4 ++++
+ 3 files changed, 13 insertions(+)
+
+diff --git a/meson.build b/meson.build
+index 1b45f5c..fe9415e 100644
+--- a/meson.build
++++ b/meson.build
+@@ -90,6 +90,13 @@ if with_snap_support == true
+     message('Enabling snapd support. Do NOT do this for distribution builds!')
+ endif
+ 
++with_udev_redirect = get_option('with-udev-redirect')
++if with_udev_redirect == true
++    cdata.set('HAVE_UDEV_REDIRECT', '1')
++    message('Enabling udev soname redirection. DO NOT DO THIS FOR ARCH LINUX!')
++    message('The udev redirect should only be used when not using udev shim')
++endif
++
+ config_h = configure_file(
+      configuration: cdata,
+      output: 'config.h',
+diff --git a/meson_options.txt b/meson_options.txt
+index f915cca..ea6798e 100644
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -14,3 +14,5 @@ option('with-libressl-suffix', type: 'string', value: '-libressl',
+         description: 'Suffix for shim LibreSSL library when using --with-libressl-mode=shim')
+ 
+ option('with-snap-support', type: 'boolean', description: 'Build LSI with explicit support for snapd', value: false)
++
++option('with-udev-redirect', type: 'boolean', description: 'Enable libudev soname redirection. DO NOT USE WITH UDEV SHIM.')
+diff --git a/src/intercept/main.c b/src/intercept/main.c
+index 9f6e4c0..392454b 100644
+--- a/src/intercept/main.c
++++ b/src/intercept/main.c
+@@ -273,7 +273,9 @@ static const char *vendor_transmute_source[] = {
+ 
+         "libbz2.so.1.0",
+ 
++#ifdef HAVE_UDEV_REDIRECT
+         "libudev.so.0",
++#endif
+ };
+ 
+ /**
+@@ -311,7 +313,9 @@ static const char *vendor_transmute_target[] = {
+ 
+         "libbz2.so.1.0.6",
+ 
++#ifdef HAVE_UDEV_REDIRECT
+         "libudev.so.1",
++#endif
+ };
+ 
+ /**

@@ -1,0 +1,24 @@
+# Maintainer: Luca Weiss <luca (at) z3ntu (dot) xyz>
+
+_name=matrix-python-sdk
+pkgname=python-matrix-client-git
+pkgver=0.0.6
+pkgrel=1
+pkgdesc="Client-Server SDK for Matrix"
+arch=('any')
+url="https://github.com/matrix-org/$_name"
+license=('Apache2')
+depends=('python')
+makedepends=('git')
+provides=('python-matrix-client')
+conflicts=('python-matrix-client')
+#options=(!emptydirs)
+source=("git+https://github.com/matrix-org/matrix-python-sdk.git")
+sha512sums=('SKIP')
+
+package() {
+  cd "$srcdir/$_name"
+  python setup.py install --root="$pkgdir/" --optimize=1
+}
+
+# vim:set ts=2 sw=2 et:
