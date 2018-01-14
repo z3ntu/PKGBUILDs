@@ -3,7 +3,7 @@
 # Contributor: Maël Kerbiriou <mael.kerbiriou-at-free-dot-fr>
 
 pkgname=amarok-kf5-git
-pkgver=2.8.90.r176.gc9b5bbb727
+pkgver=2.8.90.r178.g5a81ff856e
 pkgrel=1
 pkgdesc="The powerful music player for KDE - KF5 GIT version"
 arch=("i686" "x86_64")

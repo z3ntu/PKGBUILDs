@@ -12,7 +12,7 @@ if $build_kernel_modules; then
     _linux_next=4.11
     pkgname+=('openrazer-driver-arch-git')
 fi
-pkgver=2.1.1.r37.g260528c
+pkgver=2.2.0.r0.g45d1643
 pkgrel=1
 pkgdesc="An entirely open source driver and user-space daemon that allows you to manage your Razer peripherals on GNU/Linux. (Git version)"
 arch=('any')
@@ -22,7 +22,7 @@ makedepends=('git' 'make' 'python' 'python-setuptools')
 if $build_kernel_modules; then
     makedepends+=("linux-headers>=$_linux_current" "linux-headers<$_linux_next" "linux>=$_linux_current" "linux<$_linux_next")
 fi
-source=("$pkgbase::git+https://github.com/openrazer/openrazer.git#branch=hid")
+source=("$pkgbase::git+https://github.com/openrazer/openrazer.git")
 sha512sums=('SKIP')
 
 pkgver() {
