@@ -2,7 +2,7 @@
 # Contributor: Antonio Rojas <arojas@archlinux.org>
 
 pkgname=elisa-git
-pkgver=0.0.81.r23.gc827e08
+pkgver=0.0.81.r111.g934c8f68edd3
 pkgrel=1
 arch=(i686 x86_64)
 pkgdesc="Elisa Music Player"

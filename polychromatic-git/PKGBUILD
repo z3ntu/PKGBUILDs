@@ -2,27 +2,27 @@
 
 _pkgname=polychromatic
 pkgname=$_pkgname-git
-pkgver=0.3.11.2.r6.g1f03920
+pkgver=0.3.11.2.r13.ga3d19f634dc8
 pkgrel=1
 pkgdesc='A graphical front end for managing Razer peripherals under GNU/Linux.'
 arch=('any')
 license=('GPL2')
-source=("git+https://github.com/lah7/polychromatic.git")
-url='https://github.com/lah7/polychromatic'
+source=("git+https://github.com/polychromatic/polychromatic.git")
+url='https://github.com/polychromatic/polychromatic'
 makedepends=('git' 'nodejs-less')
-depends=('python' 'hicolor-icon-theme' 'python-openrazer' 'webkit2gtk' 'libappindicator-gtk3' 'imagemagick')
+depends=('python' 'hicolor-icon-theme' 'python-openrazer' 'webkit2gtk' 'imagemagick')
 provides=('polychromatic')
 conflicts=('polychromatic')
 sha512sums=('SKIP')
 
 pkgver() {
-  cd $srcdir/$_pkgname
+  cd $_pkgname
   git describe --long | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 package() {  
-  cd $srcdir/$_pkgname
-  make DESTDIR=$pkgdir install
+  cd $_pkgname
+  make DESTDIR="$pkgdir" install
 }
 
 # vim:set ts=2 sw=2 et:
