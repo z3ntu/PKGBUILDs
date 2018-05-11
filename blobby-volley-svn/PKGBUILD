@@ -1,7 +1,7 @@
 # Maintainer: Luca Weiss <luca (at) z3ntu (dot) xyz>
 
 pkgname=blobby-volley-svn
-pkgver=r1681
+pkgver=r1678
 pkgrel=1
 pkgdesc="Official continuation of the famous Blobby Volley 1.x arcade game."
 arch=('x86_64' 'i686')

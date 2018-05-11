@@ -4,7 +4,7 @@
 
 _pkgname=org.kde.video
 pkgname=plasma5-wallpapers-video-git
-pkgver=r13.65a7928
+pkgver=r4.f8ec6f9
 pkgrel=1
 pkgdesc="Allows the use of video wallpaper and lock screen."
 arch=("any")

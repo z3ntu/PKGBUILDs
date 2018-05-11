@@ -15,7 +15,7 @@ depends=('libpng12' 'tcsh' 'libxp' 'openssl' 'libjpeg6-turbo' 'libtiff' 'gamin'
          'xorg-fonts-misc' 'openssl-1.0')
 options=(!strip)
 # Download it yourself, I don't know a direct download link.
-source=("Autodesk_MotionBuilder_2017_EN_JP_ZH_Linux_64bit.tgz")
+source=("local://Autodesk_MotionBuilder_${pkgver}_EN_JP_ZH_Linux_64bit.tgz")
 sha512sums=('de96ac1f70af63ca9e41a74aecfbf3df716b77dfdc6ffb36561f3980cef6ac246af4868f4ee72ccdb7fd806b7c83887a90765fd0daeb1c4dfdc1c1e20c4e242e')
 
 prepare() {

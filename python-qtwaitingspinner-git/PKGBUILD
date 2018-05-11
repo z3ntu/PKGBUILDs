@@ -1,7 +1,7 @@
 # Maintainer: Luca Weiss <luca (at) z3ntu (dot) xyz>
 
 pkgname=python-qtwaitingspinner-git
-pkgver=r86.f6b35da
+pkgver=r85.79a5c81
 pkgrel=1
 pkgdesc="A waiting spinner for PyQt5"
 arch=('any')
