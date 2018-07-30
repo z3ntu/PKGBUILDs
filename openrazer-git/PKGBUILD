@@ -12,7 +12,7 @@ if $build_kernel_modules; then
     _linux_next=4.11
     pkgname+=('openrazer-driver-arch-git')
 fi
-pkgver=2.0.0.r57.g65c5d2d
+pkgver=2.3.1.r1.g43fe5da
 pkgrel=1
 pkgdesc="An entirely open source driver and user-space daemon that allows you to manage your Razer peripherals on GNU/Linux. (Git version)"
 arch=('any')

@@ -1,0 +1,65 @@
+diff --git a/ext4_utils/make_ext4fs_main.c b/ext4_utils/make_ext4fs_main.c
+index 77930cd4..d023ffdb 100644
+--- a/ext4_utils/make_ext4fs_main.c
++++ b/ext4_utils/make_ext4fs_main.c
+@@ -56,7 +56,7 @@ static void usage(char *path)
+ 	fprintf(stderr, "    [ -g <blocks per group> ] [ -i <inodes> ] [ -I <inode size> ]\n");
+ 	fprintf(stderr, "    [ -e <flash erase block size> ] [ -o <flash logical block size> ]\n");
+ 	fprintf(stderr, "    [ -L <label> ] [ -f ] [ -a <android mountpoint> ] [ -u ]\n");
+-	fprintf(stderr, "    [ -S file_contexts ] [ -C fs_config ] [ -T timestamp ]\n");
++	fprintf(stderr, "    [ -S file_contexts ] [ -T timestamp ]\n");
+ 	fprintf(stderr, "    [ -z | -s ] [ -w ] [ -c ] [ -J ] [ -v ] [ -B <block_list_file> ]\n");
+ 	fprintf(stderr, "    [ -d <base_alloc_file_in> ] [ -D <base_alloc_file_out> ]\n");
+ 	fprintf(stderr, "    <filename> [[<directory>] <target_out_directory>]\n");
+@@ -70,7 +70,6 @@ int main(int argc, char **argv)
+ 	const char *target_out_directory = NULL;
+ 	char *mountpoint = NULL;
+ 	fs_config_func_t fs_config_func = NULL;
+-	const char *fs_config_file = NULL;
+ 	int gzip = 0;
+ 	int sparse = 0;
+ 	int crc = 0;
+@@ -88,7 +87,7 @@ int main(int argc, char **argv)
+ 	struct selinux_opt seopts[] = { { SELABEL_OPT_PATH, "" } };
+ #endif
+ 
+-	while ((opt = getopt(argc, argv, "l:j:b:g:i:I:e:o:L:a:S:T:C:B:d:D:fwzJsctvu")) != -1) {
++	while ((opt = getopt(argc, argv, "l:j:b:g:i:I:e:o:L:a:S:T:B:d:D:fwzJsctvu")) != -1) {
+ 		switch (opt) {
+ 		case 'l':
+ 			info.len = parse_num(optarg);
+@@ -122,6 +121,7 @@ int main(int argc, char **argv)
+ 			break;
+ 		case 'a':
+ #ifdef ANDROID
++			fs_config_func = fs_config;
+ 			mountpoint = optarg;
+ #else
+ 			fprintf(stderr, "can't set android permissions - built without android support\n");
+@@ -166,9 +166,6 @@ int main(int argc, char **argv)
+ 		case 'T':
+ 			fixed_time = strtoll(optarg, NULL, 0);
+ 			break;
+-		case 'C':
+-			fs_config_file = optarg;
+-			break;
+ 		case 'B':
+ 			block_list_file = fopen(optarg, "w");
+ 			if (block_list_file == NULL) {
+@@ -208,16 +205,6 @@ int main(int argc, char **argv)
+ 	}
+ #endif
+ 
+-	if (fs_config_file) {
+-		if (load_canned_fs_config(fs_config_file) < 0) {
+-			fprintf(stderr, "failed to load %s\n", fs_config_file);
+-			exit(EXIT_FAILURE);
+-		}
+-		fs_config_func = canned_fs_config;
+-	} else if (mountpoint) {
+-		fs_config_func = fs_config;
+-	}
+-
+ 	if (wipe && sparse) {
+ 		fprintf(stderr, "Cannot specifiy both wipe and sparse\n");
+ 		usage(argv[0]);
