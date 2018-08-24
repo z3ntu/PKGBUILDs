@@ -1,0 +1,23 @@
+pkgbase = quickbms
+	pkgdesc = Files extractor and reimporter, archives and file formats parser, advanced tool for reversers and power users and much more.
+	pkgver = 0.9.0
+	pkgrel = 1
+	url = http://aluigi.altervista.org/quickbms.htm
+	arch = x86_64
+	arch = i686
+	license = GPL2
+	source = quickbms_0.9.0.zip::http://aluigi.altervista.org/papers/quickbms_src.zip
+	sha512sums = b61bede331e808faec5c7c653cb4ece91835319dce59b8a9bdd31b542814a4de85d27aec18d8661cef87e2a170ba88e651c5266bc5e5b823f333b5f94aff1ab9
+	depends_x86_64 = lib32-lzo
+	depends_x86_64 = lib32-bzip2
+	depends_x86_64 = lib32-zlib
+	depends_x86_64 = lib32-openssl
+	depends_x86_64 = lib32-gcc-libs
+	makedepends_x86_64 = gcc-multilib
+	depends_i686 = lzo
+	depends_i686 = bzip2
+	depends_i686 = zlib
+	depends_i686 = openssl
+
+pkgname = quickbms
+
