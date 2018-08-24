@@ -1,0 +1,17 @@
+pkgbase = kde1-kdegames
+	pkgdesc = Historical copy of the gaming applications module of KDE 1, adapted to compile on modern systems (circa. 2016)
+	pkgver = 1.1.2
+	pkgrel = 1
+	url = https://github.com/KDE/kde1-kdegames
+	arch = i686
+	arch = x86_64
+	groups = kde1
+	license = GPL2
+	makedepends = cmake
+	depends = qt1
+	depends = kde1-kdelibs
+	source = https://github.com/KDE/kde1-kdegames/archive/0c70bf0d7c9ace37095e4a02bed921f4e301f17a.tar.gz
+	sha256sums = 828190ad3556c35bde33f4320f8bcb3e0d479b5c85c86a37201669f7f6d6f94c
+
+pkgname = kde1-kdegames
+
