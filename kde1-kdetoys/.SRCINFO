@@ -1,0 +1,17 @@
+pkgbase = kde1-kdetoys
+	pkgdesc = Historical copy of the toys module of KDE 1, adapted to compile on modern systems (circa. 2016)
+	pkgver = 1.1.2
+	pkgrel = 2
+	url = https://github.com/KDE/kde1-kdetoys
+	arch = i686
+	arch = x86_64
+	groups = kde1
+	license = GPL2
+	makedepends = cmake
+	depends = qt1
+	depends = kde1-kdelibs
+	source = https://github.com/KDE/kde1-kdetoys/archive/16f863f984ead0f72fdbfb05062e3e603b0e674b.tar.gz
+	sha256sums = 6a361da334367c1a79d59e28c08d20d31a28fdcc7f1c35a9a88a68aa0dfc3789
+
+pkgname = kde1-kdetoys
+
