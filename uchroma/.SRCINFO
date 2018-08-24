@@ -1,0 +1,37 @@
+pkgbase = uchroma
+	pkgdesc = An advanced driver for Razer Chroma hardware in Linux
+	pkgver = 1.0.3
+	pkgrel = 1
+	url = https://github.com/cyanogen/uchroma
+	install = uchroma.install
+	arch = x86_64
+	arch = i686
+	license = LGPL3
+	makedepends = cython
+	makedepends = python-pytest-runner
+	depends = python
+	depends = python-wrapt
+	depends = python-traitlets
+	depends = python-ruamel-yaml
+	depends = python-scikit-image
+	depends = python-pydbus
+	depends = python-hsluv
+	depends = python-hidapi-cffi
+	depends = python-frozendict
+	depends = python-colorlog
+	depends = python-argcomplete
+	depends = python-grapefruit
+	depends = python-cffi
+	depends = hidapi
+	depends = python-evdev
+	depends = python-pyudev
+	depends = python-hidapi
+	depends = python-gbulb
+	depends = python-colr
+	depends = python-dask
+	options = !emptydirs
+	source = https://github.com/cyanogen/uchroma/archive/release/1.0.3.tar.gz
+	sha512sums = 178ba66f4e6f2a2d93a7120026010e68d1a5b518ed309f1ad6f5014ba8a699ba9f432b2fa3146f0d06842fc0b5a7c57f727406b506a5e12009793f785d71e230
+
+pkgname = uchroma
+
