@@ -1,0 +1,16 @@
+# Ignore everything
+/*/**
+
+# Exclude these files from ignoring
+!/*/PKGBUILD
+!/*/.SRCINFO
+!/*/*.patch
+!/*/*.diff
+!/*/*.install
+!/*/*.hook
+!/*/*.desktop
+
+# Special cases/files
+!/spriter-bin/spriter.sh
+!/spriter-bin/spriter.png
+!/linux-steam-integration*/*.sh
