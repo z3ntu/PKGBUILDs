@@ -1,0 +1,14 @@
+[Unit]
+Description=postmarketOS Matrix bot
+After=network.target
+
+[Service]
+Type=simple
+User=nobody
+Group=nobody
+EnvironmentFile=/etc/conf.d/pmos-matrix-bot
+ExecStart=/usr/bin/pmos-matrix-bot -homeserver ${BOT_HOMESERVER} -username ${BOT_USERNAME} -password ${BOT_PASSWORD}
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

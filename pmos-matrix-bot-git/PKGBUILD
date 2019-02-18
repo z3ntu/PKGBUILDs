@@ -1,0 +1,42 @@
+# Maintainer: Luca Weiss <luca (at) z3ntu (dot) xyz>
+
+pkgname=pmos-matrix-bot-git
+_pkgname=matrix-bot
+pkgver=r11.a8ab9db
+pkgrel=1
+pkgdesc="Friendly bot that does not try to destroy all humans"
+arch=('x86_64')
+url="https://gitlab.com/postmarketOS/matrix-bot"
+license=('GPL')
+makedepends=('git' 'go-pie')
+provides=("${pkgname%-git}")
+conflicts=("${pkgname%-git}")
+source=('git+https://gitlab.com/postmarketOS/matrix-bot.git'
+        'pmos-matrix-bot.service'
+        'pmos-matrix-bot.conf')
+sha512sums=('SKIP'
+            '440d302d39aae2653676fa4aa9298f57b9d96cb1d760b836610b57e00c46e1e786197d9a45e1e0f7797695166f41091571865260ccb7cd062bcab4d0537ae801'
+            '9b8f258969e4ce61ea256dd12a74984a58092561f3d69c6d9fa1556e1b6f8627363dd71a00c30e6d54d20980fa9ad26b0e6050ecb7cfeae16587788ab6d96b14')
+
+pkgver() {
+  cd "$_pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$_pkgname"
+  go build \
+    -gcflags "all=-trimpath=$PWD" \
+    -asmflags "all=-trimpath=$PWD" \
+    -ldflags "-extldflags $LDFLAGS" \
+    -o pmos-matrix-bot .
+}
+
+package() {
+  cd "$_pkgname"
+  install -Dm755 pmos-matrix-bot "$pkgdir"/usr/bin/pmos-matrix-bot
+
+  cd "$srcdir"
+  install -Dm644 pmos-matrix-bot.service "$pkgdir"/usr/lib/systemd/system/pmos-matrix-bot.service
+  install -Dm600 pmos-matrix-bot.conf "$pkgdir"/etc/conf.d/pmos-matrix-bot
+}
