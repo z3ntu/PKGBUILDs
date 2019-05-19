@@ -1,6 +1,6 @@
 pkgbase = pmos-matrix-bot-git
 	pkgdesc = Friendly bot that does not try to destroy all humans
-	pkgver = r11.a8ab9db
+	pkgver = r12.3327288
 	pkgrel = 1
 	url = https://gitlab.com/postmarketOS/matrix-bot
 	arch = x86_64
@@ -9,6 +9,7 @@ pkgbase = pmos-matrix-bot-git
 	makedepends = go-pie
 	provides = pmos-matrix-bot
 	conflicts = pmos-matrix-bot
+	backup = etc/conf.d/pmos-matrix-bot
 	source = git+https://gitlab.com/postmarketOS/matrix-bot.git
 	source = pmos-matrix-bot.service
 	source = pmos-matrix-bot.conf
