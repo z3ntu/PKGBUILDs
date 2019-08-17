@@ -2,7 +2,7 @@
 
 pkgname=linux-steam-integration-git
 _pkgname=linux-steam-integration
-pkgver=0.7.3.r0.g54bd492
+pkgver=0.7.3.r5.g6137c52
 pkgrel=1
 pkgdesc="Helper for enabling better Steam integration on Linux"
 url="https://github.com/clearlinux/linux-steam-integration"
@@ -25,7 +25,7 @@ pkgver() {
 
 prepare() {
   cd "$srcdir/$_pkgname"
-  git config submodule.src/libnica.url $srcdir/libnica
+  git config submodule.src/libnica.url "$srcdir"/libnica
   git submodule update
 }
 
