@@ -1,5 +1,5 @@
 pkgbase = epeg-git
-	pkgdesc = An IMMENSELY FAST JPEG thumbnailer library API.
+	pkgdesc = An IMMENSELY FAST JPEG thumbnailer library API
 	pkgver = 0.9.2.r2.g248ae9f
 	pkgrel = 1
 	url = https://github.com/mattes/epeg
@@ -10,7 +10,7 @@ pkgbase = epeg-git
 	depends = libexif
 	provides = epeg
 	conflicts = epeg
-	source = epeg::git+https://github.com/mattes/epeg.git
+	source = git+https://github.com/mattes/epeg.git
 	sha512sums = SKIP
 
 pkgname = epeg-git
