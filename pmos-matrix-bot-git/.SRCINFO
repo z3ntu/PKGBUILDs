@@ -1,6 +1,6 @@
 pkgbase = pmos-matrix-bot-git
 	pkgdesc = Friendly bot that does not try to destroy all humans
-	pkgver = r15.4e0ba7e
+	pkgver = r17.e469888
 	pkgrel = 1
 	url = https://gitlab.com/postmarketOS/matrix-bot
 	arch = x86_64
@@ -14,8 +14,8 @@ pkgbase = pmos-matrix-bot-git
 	source = pmos-matrix-bot.service
 	source = pmos-matrix-bot.conf
 	sha512sums = SKIP
-	sha512sums = c561306a6493a6bb51604b974f722c6f52ac2ef7ed548a1b28d8d7c2a60827c448d10f832daabf2aaa6f274bcee51a6dfbfba955c9d8696c8125a22315081c5a
-	sha512sums = 9b8f258969e4ce61ea256dd12a74984a58092561f3d69c6d9fa1556e1b6f8627363dd71a00c30e6d54d20980fa9ad26b0e6050ecb7cfeae16587788ab6d96b14
+	sha512sums = 2390052f2d116a00bfa98b377a0f3e2195a9f48dff130729afe8ff39cc893b8f983f42f91a12d251ee27a417f5bc1e01c95d78410943a4ac337a63944dcc1c5e
+	sha512sums = 90b308082d088bdb57ca559b8d52af5ff62dc16f47e1c63fe5359e76656498a4012f1989d19f6d32e3eae04c2acfe246858c19ef45f21d30c92d45a8b7d7ffb2
 
 pkgname = pmos-matrix-bot-git
 
