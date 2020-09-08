@@ -2,22 +2,26 @@
 
 pkgname=pmos-matrix-bot-git
 _pkgname=matrix-bot
-pkgver=r17.e469888
+pkgver=r21.47b110a
 pkgrel=1
 pkgdesc="Friendly bot that does not try to destroy all humans"
 arch=('x86_64')
 url="https://gitlab.com/postmarketOS/matrix-bot"
 license=('GPL')
-makedepends=('git' 'go-pie')
+makedepends=('git' 'go')
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
 backup=('etc/conf.d/pmos-matrix-bot')
 source=('git+https://gitlab.com/postmarketOS/matrix-bot.git'
         'pmos-matrix-bot.service'
-        'pmos-matrix-bot.conf')
+        'pmos-matrix-bot.conf'
+        'pmos-matrix-bot.sysusers'
+        'pmos-matrix-bot.tmpfiles')
 sha512sums=('SKIP'
-            '2390052f2d116a00bfa98b377a0f3e2195a9f48dff130729afe8ff39cc893b8f983f42f91a12d251ee27a417f5bc1e01c95d78410943a4ac337a63944dcc1c5e'
-            '90b308082d088bdb57ca559b8d52af5ff62dc16f47e1c63fe5359e76656498a4012f1989d19f6d32e3eae04c2acfe246858c19ef45f21d30c92d45a8b7d7ffb2')
+            '205d92293b59738cbb2da53e1e0cc04848c90ca8821eb3f9acbe581c0a16ce8b699cb66c11a6518f9babd1c49e369451575f89e3742f1eef232540b527bfc77b'
+            '6df1fc5616a76af6d47bc03f62d5360d8cbfbe8bc436c152da3a020c8d06802b92cf9adef05c6fe98a06eb783410ed06bed84ea78c67b8ee2ff1677a7b5a61f1'
+            'c8448e23392be0efb2ee624e98f62ee5ab4141a5c2e397ec5b418bd678d86f305a667e36a05c74da8f4deaae05b57fe3ee41ade3d3804e3d3496239b41128824'
+            '6f493f8569139657f12eff1108cc7a5c060e3c7d4665758c079d9b76746499cff814a25ae40763a720faa7f47e523ceb0506cca48af1f8915beced8b83b70744')
 
 pkgver() {
   cd "$_pkgname"
@@ -26,11 +30,12 @@ pkgver() {
 
 build() {
   cd "$_pkgname"
-  go build \
-    -gcflags "all=-trimpath=$PWD" \
-    -asmflags "all=-trimpath=$PWD" \
-    -ldflags "-extldflags $LDFLAGS" \
-    -o pmos-matrix-bot .
+  export CGO_CPPFLAGS="${CPPFLAGS}"
+  export CGO_CFLAGS="${CFLAGS}"
+  export CGO_CXXFLAGS="${CXXFLAGS}"
+  export CGO_LDFLAGS="${LDFLAGS}"
+  export GOFLAGS="-buildmode=pie -trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"
+  go build -o pmos-matrix-bot .
 }
 
 package() {
@@ -40,4 +45,6 @@ package() {
   cd "$srcdir"
   install -Dm644 pmos-matrix-bot.service "$pkgdir"/usr/lib/systemd/system/pmos-matrix-bot.service
   install -Dm600 pmos-matrix-bot.conf "$pkgdir"/etc/conf.d/pmos-matrix-bot
+  install -Dm644 pmos-matrix-bot.sysusers "$pkgdir"/usr/lib/sysusers.d/pmos-matrix-bot.conf
+  install -Dm644 pmos-matrix-bot.tmpfiles "$pkgdir"/usr/lib/tmpfiles.d/pmos-matrix-bot.conf
 }

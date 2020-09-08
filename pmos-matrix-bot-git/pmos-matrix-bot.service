@@ -5,10 +5,9 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=nobody
-Group=nobody
+User=pmos-matrix-bot
 EnvironmentFile=/etc/conf.d/pmos-matrix-bot
-ExecStart=/usr/bin/pmos-matrix-bot -homeserver ${BOT_HOMESERVER} -username ${BOT_USERNAME} -password ${BOT_PASSWORD} -deviceid ${BOT_DEVICEID}
+ExecStart=/usr/bin/pmos-matrix-bot -homeserver ${BOT_HOMESERVER} -username ${BOT_USERNAME} -password ${BOT_PASSWORD} -deviceid ${BOT_DEVICEID} -stateStoragePath ${BOT_STATESTORAGEPATH}
 Restart=on-failure
 
 [Install]
