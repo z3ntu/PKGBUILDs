@@ -1,3 +1,0 @@
-post_install() {
-  echo "You have to have a ~/mycroft-core folder in your home directory! See https://cgit.kde.org/plasma-mycroft.git/about/ for more information!"
-}
