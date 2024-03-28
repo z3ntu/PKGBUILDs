@@ -14,18 +14,24 @@ license=('APACHE' 'MIT')
 options=("!lto") # see: https://github.com/briansmith/ring/issues/1444
 
 prepare() {
-  cd $pkgname-$pkgver
+  cd "${pkgname}-${pkgver}"
+  export RUSTUP_TOOLCHAIN=stable
+  cargo fetch --target "$(rustc -vV | sed -n 's/host: //p')"
 }
 
 build() {
-    cd $pkgname-$pkgver
-    cargo build --release --locked --all-features --target-dir=target
+  cd "${pkgname}-${pkgver}"
+  export RUSTUP_TOOLCHAIN=stable
+  export CARGO_TARGET_DIR=target
+  cargo build --frozen --release --all-features
 }
 
 check() {
-    cd $pkgname-$pkgver
-    cargo test --release --locked --target-dir=target
-}
+  cd "${pkgname}-${pkgver}"
+  export RUSTUP_TOOLCHAIN=stable
+  export CARGO_TARGET_DIR=target
+  cargo test --frozen --release --all-features
+ }
 
 package() {
     cd $pkgname-$pkgver
@@ -33,4 +39,3 @@ package() {
     install -Dm644 "LICENSE-APACHE" "$pkgdir/usr/share/licenses/${pkgname}/LICENSE-APACHE"
     install -Dm644 "LICENSE-MIT" "$pkgdir/usr/share/licenses/${pkgname}/LICENSE-MIT"
 }
-md5sums=('12d0e7c1ef1c476b29318717d968395a')
