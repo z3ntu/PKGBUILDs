@@ -1,15 +1,15 @@
 # Maintainer: Luca Weiss <luca (at) z3ntu (dot) xyz>
 # Contributor: Gabriele Musco <emaildigabry@gmail.com>
 
+pkgname=('openrazer-daemon-git' 'openrazer-driver-dkms-git' 'openrazer-meta-git' 'python-openrazer-git')
 pkgbase=openrazer-git
 _pkgbase=openrazer
-pkgname=('python-openrazer-git' 'openrazer-daemon-git' 'openrazer-driver-dkms-git' 'openrazer-meta-git')
-pkgver=3.0.1.r8.g851c32a5
+pkgver=3.8.0.r8.g72db40bf
 pkgrel=1
-pkgdesc="An entirely open source driver and user-space daemon that allows you to manage your Razer peripherals on GNU/Linux."
+pkgdesc='Community-led effort to support Razer peripherals on Linux (git version)'
 arch=('any')
-url="https://github.com/openrazer/openrazer"
-license=('GPL2')
+url=https://openrazer.github.io
+license=('GPL')
 makedepends=('git' 'python-setuptools')
 source=("git+https://github.com/openrazer/openrazer.git")
 sha256sums=('SKIP')
@@ -29,19 +29,18 @@ prepare() {
   fi
 }
 
-package_python-openrazer-git() {
-  pkgdesc="Python library for accessing the Razer daemon from Python."
-  depends=('openrazer-daemon' 'python-numpy')
-  provides=('python-openrazer')
-  conflicts=('python-openrazer')
-
-  cd "$_pkgbase"
-  make DESTDIR="$pkgdir" python_library_install
-}
-
 package_openrazer-daemon-git() {
-  pkgdesc="Userspace daemon that abstracts access to the kernel driver. Provides a DBus service for applications to use."
-  depends=('openrazer-driver-dkms' 'gtk3' 'python-dbus' 'python-gobject' 'python-setproctitle' 'python-daemonize' 'python-notify2' 'python-pyudev' 'xautomation')
+  pkgdesc='Userspace daemon that abstracts access to the kernel driver. Provides a DBus service for applications to use'
+  depends=(
+    'openrazer-driver-dkms'
+    'python-daemonize'
+    'python-dbus'
+    'python-gobject'
+    'python-pyudev'
+    'python-setproctitle'
+    'xautomation'
+  )
+  optdepends=('python-notify2: for the battery notifier')
   provides=('openrazer-daemon')
   conflicts=('openrazer-daemon')
   install=openrazer-daemon-git.install
@@ -51,13 +50,13 @@ package_openrazer-daemon-git() {
 }
 
 package_openrazer-driver-dkms-git() {
-  pkgdesc="Kernel driver for Razer devices (DKMS-variant)"
-  depends=('dkms' 'udev')
+  pkgdesc='OpenRazer kernel modules sources'
+  depends=('dkms')
   provides=('openrazer-driver-dkms')
   conflicts=('openrazer-driver-dkms')
   install=openrazer-driver-dkms-git.install
 
-  cd "$_pkgbase"
+  cd $_pkgbase
   make DESTDIR="$pkgdir" setup_dkms udev_install
 }
 
@@ -69,4 +68,14 @@ package_openrazer-meta-git() {
               'razercommander: gtk frontend')
   provides=('openrazer-meta')
   conflicts=('openrazer-meta')
+}
+
+package_python-openrazer-git() {
+  pkgdesc='Library for interacting with the OpenRazer daemon'
+  depends=('openrazer-daemon' 'python-numpy')
+  provides=('python-openrazer')
+  conflicts=('python-openrazer')
+
+  cd $_pkgbase
+  make DESTDIR="$pkgdir" python_library_install
 }
