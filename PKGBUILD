@@ -2,7 +2,7 @@
 # https://wiki.archlinux.org/index.php/Rust_package_guidelines
 
 pkgname=agate
-pkgver=3.3.6
+pkgver=3.3.7
 pkgrel=1
 pkgdesc="Simple static file server for the Gemini network protocol, written in Rust"
 depends=('gcc-libs' 'glibc')
@@ -39,4 +39,4 @@ package() {
     install -Dm644 "LICENSE-APACHE" "$pkgdir/usr/share/licenses/${pkgname}/LICENSE-APACHE"
     install -Dm644 "LICENSE-MIT" "$pkgdir/usr/share/licenses/${pkgname}/LICENSE-MIT"
 }
-sha256sums=('a55fb0a6179de902ca7ed54763c975d16e5e4dcaa97ccc9085a320f8e9f57bc7')
+sha256sums=('f106230720812eeaede897f6ccf7b2a498c84b5661e9b40902eb9a387df0367f')
