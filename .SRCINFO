@@ -1,6 +1,6 @@
 pkgbase = betula
 	pkgdesc = Self-hosted personal link collection manager
-	pkgver = 1.3.0
+	pkgver = 1.3.1
 	pkgrel = 1
 	url = https://git.sr.ht/~bouncepaw/betula
 	arch = aarch64
@@ -11,7 +11,7 @@ pkgbase = betula
 	depends = sqlite
 	depends = glibc
 	options = lto
-	source = v1.3.0.tar.gz::https://git.sr.ht/~bouncepaw/betula/archive/v1.3.0.tar.gz
-	sha256sums = a3cbd207122dcbbd9d9b36423950cb04c806d42ab674fbda941c9bc527d191c7
+	source = v1.3.1.tar.gz::https://git.sr.ht/~bouncepaw/betula/archive/v1.3.1.tar.gz
+	sha256sums = 0f7ea4a632dca7791a3f59578b923b352185074b5025d3df2a8ddc2d789408ef
 
 pkgname = betula

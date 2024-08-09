@@ -2,7 +2,7 @@
 # -*- mode: sh -*-
 
 pkgname='betula'
-pkgver=1.3.0
+pkgver=1.3.1
 pkgrel=1
 pkgdesc='Self-hosted personal link collection manager'
 arch=('aarch64' 'armv7h' 'x86_64')
@@ -36,6 +36,7 @@ build() {
   export CGO_LDFLAGS="$LDFLAGS"
 
   go build \
+    -tags "libsqlite3 linux" \
     -buildmode=pie \
     -trimpath \
     -ldflags="-linkmode=external -X main.version=$pkgver" \
@@ -52,5 +53,5 @@ package() {
   install -Dm0644 "README.md"    "$pkgdir/usr/share/doc/$pkgname/README.md"
 }
 
-sha256sums=('a3cbd207122dcbbd9d9b36423950cb04c806d42ab674fbda941c9bc527d191c7')
+sha256sums=('0f7ea4a632dca7791a3f59578b923b352185074b5025d3df2a8ddc2d789408ef')
 
