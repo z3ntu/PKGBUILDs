@@ -4,12 +4,12 @@
 pkgname=('openrazer-daemon-git' 'openrazer-driver-dkms-git' 'openrazer-meta-git' 'python-openrazer-git')
 pkgbase=openrazer-git
 _pkgbase=openrazer
-pkgver=3.8.0.r8.g72db40bf
+pkgver=3.8.0.r34.gd52042ab
 pkgrel=1
 pkgdesc='Community-led effort to support Razer peripherals on Linux (git version)'
 arch=('any')
 url=https://openrazer.github.io
-license=('GPL')
+license=('GPL-2.0-or-later')
 makedepends=('git' 'python-setuptools')
 source=("git+https://github.com/openrazer/openrazer.git")
 sha256sums=('SKIP')
@@ -32,6 +32,7 @@ prepare() {
 package_openrazer-daemon-git() {
   pkgdesc='Userspace daemon that abstracts access to the kernel driver. Provides a DBus service for applications to use'
   depends=(
+    'libnotify'
     'openrazer-driver-dkms'
     'python-daemonize'
     'python-dbus'
@@ -40,7 +41,6 @@ package_openrazer-daemon-git() {
     'python-setproctitle'
     'xautomation'
   )
-  optdepends=('python-notify2: for the battery notifier')
   provides=('openrazer-daemon')
   conflicts=('openrazer-daemon')
   install=openrazer-daemon-git.install
